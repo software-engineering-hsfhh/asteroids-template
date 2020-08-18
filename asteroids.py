@@ -340,27 +340,7 @@ class MyGame(arcade.Window):
 
         if not self.game_over:
             self.asteroid_list.update()
-            self.bullet_list.update()
             self.player_sprite_list.update()
-
-            for bullet in self.bullet_list:
-                asteroids = arcade.check_for_collision_with_list(bullet, self.asteroid_list)
-
-                for asteroid in asteroids:
-                    self.split_asteroid(cast(AsteroidSprite, asteroid))  # expected AsteroidSprite, got Sprite instead
-                    asteroid.remove_from_sprite_lists()
-                    bullet.remove_from_sprite_lists()
-
-                # Remove bullet if it goes off-screen
-                size = max(bullet.width, bullet.height)
-                if bullet.center_x < 0 - size:
-                    bullet.remove_from_sprite_lists()
-                if bullet.center_x > SCREEN_WIDTH + size:
-                    bullet.remove_from_sprite_lists()
-                if bullet.center_y < 0 - size:
-                    bullet.remove_from_sprite_lists()
-                if bullet.center_y > SCREEN_HEIGHT + size:
-                    bullet.remove_from_sprite_lists()
 
             if not self.player_sprite.respawning:
                 asteroids = arcade.check_for_collision_with_list(self.player_sprite, self.asteroid_list)
