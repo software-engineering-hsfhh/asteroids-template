@@ -14,9 +14,6 @@ import math
 import arcade
 import os
 
-print("Test")
-print("Hallo")
-
 from typing import cast
 
 STARTING_ASTEROID_COUNT = 3
